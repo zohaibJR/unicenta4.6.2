@@ -133,9 +133,9 @@ public class StartPOS {
       JPanel mainPanel = (JPanel) rootframe.getContentPane();
       mainPanel.setLayout(null); // Assuming null layout for absolute positioning
       
-      // Add new button
+      // Add new button below the existing user buttons
       JButton supplyChainButton = new JButton("Supply Chain");
-      supplyChainButton.setBounds(850, 20, 150, 50); // Adjust the position and size accordingly
+      supplyChainButton.setBounds(900, 200, 150, 50); // Adjust the position and size accordingly
 
       supplyChainButton.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
@@ -147,7 +147,7 @@ public class StartPOS {
 
       // Clear the content in the red-marked box
       JLabel licenseInfo = new JLabel();
-      licenseInfo.setBounds(200, 600, 600, 100); // Adjust the position and size accordingly
+      licenseInfo.setBounds(100, 600, 800, 100); // Adjust the position and size accordingly
       licenseInfo.setText(""); // Clear the content
       mainPanel.add(licenseInfo);
 
