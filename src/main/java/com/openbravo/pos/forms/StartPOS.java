@@ -27,6 +27,8 @@ import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.SubstanceSkin;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -115,10 +117,49 @@ public class StartPOS {
         JRootFrame rootframe = new JRootFrame();
         try {
           rootframe.initFrame(config);
+          
+          // Adding "Supply Chain" button and clearing the content in the red-marked box
+          addCustomComponents(rootframe);
+          
         } catch (Exception ex) {
           log.error(ex.getMessage());
         }
       }
     });
+  }
+
+  // Method to add custom components to the main frame
+  private static void addCustomComponents(JFrame rootframe) {
+      JPanel mainPanel = (JPanel) rootframe.getContentPane();
+      mainPanel.setLayout(null); // Assuming null layout for absolute positioning
+      
+      // Add new button
+      JButton supplyChainButton = new JButton("Supply Chain");
+      supplyChainButton.setBounds(850, 20, 150, 50); // Adjust the position and size accordingly
+
+      supplyChainButton.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              openBlankScreen();
+          }
+      });
+      
+      mainPanel.add(supplyChainButton);
+
+      // Clear the content in the red-marked box
+      JLabel licenseInfo = new JLabel();
+      licenseInfo.setBounds(200, 600, 600, 100); // Adjust the position and size accordingly
+      licenseInfo.setText(""); // Clear the content
+      mainPanel.add(licenseInfo);
+
+      rootframe.revalidate();
+      rootframe.repaint();
+  }
+
+  // Method to open a blank screen
+  private static void openBlankScreen() {
+      JFrame blankFrame = new JFrame("Blank Screen");
+      blankFrame.setSize(800, 600); // Adjust size as needed
+      blankFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+      blankFrame.setVisible(true);
   }
 }
